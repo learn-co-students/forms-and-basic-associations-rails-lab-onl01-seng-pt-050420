@@ -12,9 +12,8 @@ class SongsController < ApplicationController
   end
 
   def create
-    #byebug
-    artist = Artist.find_or_create_by(params[:artist])
     @song = Song.new(song_params)
+
     if @song.save
       redirect_to @song
     else
@@ -48,7 +47,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :artist, :genre_id)
+    params.require(:song).permit(:title,:artist_name,:genre_id, :note_contents => [])
   end
 end
-
